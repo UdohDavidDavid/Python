@@ -1,3 +1,5 @@
+import os
+os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide" # Removes pygame welcome message
 import argparse
 import time
 from pygame import mixer

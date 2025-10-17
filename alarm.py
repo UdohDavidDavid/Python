@@ -25,7 +25,7 @@ def countdown(sec):
 
 def playsound():
     mixer.init()
-    mixer.music.load("/home/david/Music/Washing.mp3")
+    mixer.music.load("Music/Washing.mp3")
     mixer.music.play(-1)
 
 def stop():

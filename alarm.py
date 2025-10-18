@@ -32,17 +32,14 @@ def playsound():
     mixer.init()
     mixer.music.load("Music/Washing.mp3") # Music is in Music dir
     mixer.music.play(-1) # Plays infinitely
-
-def stop():
     input("Time's up buddy...") # Keeps the program running so that the music can continue playing
 
 def timer():
     print(f"Alarm set for {time.strftime("%H:%M:%S",time.gmtime(sec))}")
     countdown(sec)
-    playsound()
-    stop()
+    playsound() # Plays song till stoped
 
 try:
     timer()
 except KeyboardInterrupt:
-    print("Bye buddy.")
+    print("Bye buddy.") # Shuts it off

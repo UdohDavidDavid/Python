@@ -1,5 +1,6 @@
 import os
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide" # Removes pygame welcome message
+
 import argparse
 import time
 from pygame import mixer
@@ -11,6 +12,7 @@ args = parser.parse_args()
 def convert():
     timer = args.time
     hours, mins, sec = list(map(int, timer.split(":"))) # Converts value of timer from string to int using map.
+
     hours = hours * 60
     mins = mins + hours
     mins = mins * 60
@@ -43,4 +45,4 @@ def timer():
 try:
     timer()
 except KeyboardInterrupt:
-    print("Bye buddy")
+    print("Bye buddy.")

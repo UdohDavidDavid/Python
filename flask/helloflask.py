@@ -7,7 +7,7 @@
 #   UUID             - Accepts UUID strings (Search that up)
 #   Float            - Theres also floats apparently
 
-from flask import Flask
+from flask import Flask, redirect, url_for
 app = Flask(__name__) # Flask constructor -- Creates a flask app
 
 # A decorator used to tell the application
@@ -24,6 +24,22 @@ def home_flask(): # Function is bound to route
 @app.route("/<float:flaskID>") # This is the variable type Int. Accepts floats and signed ints too
 def flask_id(flaskID):
     return "Flask ID - %f" %flaskID # Returns the flask ID
+
+###### Example for dynamic binding for URLs
+@app.route("/admin") # Decorator for root (argument) function
+def hello_admin():  # Binding to hello_admin call
+    return "Hello Admin"
+
+@app.route("/guest/<guest>")
+def hello_guest(guest): # Binding to hello_guest call
+    return "Hello %s as Guest" %guest
+
+@app.route("/user/<name>")
+def hello_user(name):
+    if name == "admin":  # Dynamic binding for URL to function -- Dont forget to import redirect and url_for
+        return redirect(url_for("hello_admin"))
+    else:
+        return redirect(url_for("hello_guest", guest=name))
 
 if __name__ == "__main__":
     app.run(debug=True) # Runs the app in debug mode -- Ensures the app does not need to restart manually if any changes are made in code

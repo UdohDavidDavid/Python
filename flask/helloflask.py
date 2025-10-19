@@ -26,3 +26,4 @@ def flask_id(flaskID):
 
 if __name__ == "__main__":
     app.run(debug=True) # Runs the app in debug mode -- Ensures the app does not need to restart manually if any changes are made in code
+    print("Hello Flask")

@@ -5,6 +5,7 @@
 #   Int              - Accepts positive integers
 #   Path             - Similar to strings but also accepts slashes
 #   UUID             - Accepts UUID strings (Search that up)
+#   Float            - Theres also floats apparently
 
 from flask import Flask
 app = Flask(__name__) # Flask constructor -- Creates a flask app
@@ -20,9 +21,9 @@ def hello_flask(name):  # Creates a function that is bound with "/" route and re
 def home_flask(): # Function is bound to route
     return "Welcome to Home Page!" # Displays Message when the url is visited
 
-@app.route("/<int:flaskID>") # This is the variable type Int. Accepts floats and signed ints too
+@app.route("/<float:flaskID>") # This is the variable type Int. Accepts floats and signed ints too
 def flask_id(flaskID):
-    return "Flask ID - %d" %flaskID # Returns the flask ID
+    return "Flask ID - %f" %flaskID # Returns the flask ID
 
 if __name__ == "__main__":
     app.run(debug=True) # Runs the app in debug mode -- Ensures the app does not need to restart manually if any changes are made in code

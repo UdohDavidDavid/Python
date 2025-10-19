@@ -15,7 +15,7 @@ app = Flask(__name__) # Flask constructor -- Creates a flask app
 @app.route("/<name>")  # Defines a route
 # Variables are used in the route by calling <varible_name> -- Makes a variable "name"
 def hello_flask(name):  # Creates a function that is bound with "/" route and returns hello when the root page is accesssed
-    return "Hello %s!" %name 
+    return "Hello %s!" %name
 
 @app.route("/") # Defines another route
 def home_flask(): # Function is bound to route
@@ -43,4 +43,3 @@ def hello_user(name):
 
 if __name__ == "__main__":
     app.run(debug=True) # Runs the app in debug mode -- Ensures the app does not need to restart manually if any changes are made in code
-    print("Hello Flask")

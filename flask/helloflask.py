@@ -9,7 +9,7 @@
 from flask import Flask
 app = Flask(__name__) # Flask constructor -- Creates a flask app
 
-# A deconstructor used to tell the application
+# A decorator used to tell the application
 # which URL is associated function
 @app.route("/<name>")  # Defines a route
 # Variables are used in the route by calling <varible_name> -- Makes a variable "name"

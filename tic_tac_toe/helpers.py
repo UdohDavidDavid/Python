@@ -13,10 +13,9 @@ def check_turn(turn):
 def stop_game(turn):
     player = check_turn(turn)
     print(f"{player} has won!")
-    running = False
     sys.exit()
 
-def check_winner(spots, runing, turn):
+def check_winner(spots, turn):
     if spots[1] == spots[2] == spots[3] or spots[4] == spots[5] == spots[6] or spots[7] == spots[8] == spots[9]:
        stop_game(turn)
     if spots[1] == spots[4] == spots[7] or spots[2] == spots[5] == spots[8] or spots[3] == spots[6] == spots[9]:

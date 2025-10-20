@@ -11,7 +11,7 @@ while playing:
     # Reset the screen
     os.system("cls" if os.name == "nt" else "clear")
     draw_board(spots)
-    check_winner(spots, playing, turn)
+    check_winner(spots, turn)
     # If an invalid turn occured let the player know
     if prev_turn == turn:
         print("Invalid spot selected, please pick another")

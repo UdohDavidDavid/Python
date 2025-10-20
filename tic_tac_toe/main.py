@@ -1,4 +1,4 @@
-from helpers import draw_board, check_turn, check_winner
+from helpers import draw_board, check_turn, check_winner, check_tie
 import os
 
 spots = { 1 : "1", 2 : "2", 3 : "3", 4 : "4", 5 : "5", 6 : "6", 7 : "7", 8 : "8", 9 : "9" }
@@ -12,6 +12,7 @@ while playing:
     os.system("cls" if os.name == "nt" else "clear")
     draw_board(spots)
     check_winner(spots, turn)
+    check_tie(spots, turn)
     # If an invalid turn occured let the player know
     if prev_turn == turn:
         print("Invalid spot selected, please pick another")

@@ -15,10 +15,10 @@ with open("names_file.txt", "w") as file:
             capitalized_name = name.capitalize()
             # Writes to the file
             file.write(capitalized_name)
+            print("Names written to file - Overrode old names\n")
         else: # If requirements not met, print("<Error Message>")
             print("Sorry type correct format")
 
 # Prints contents of the file
 with open("names_file.txt", "r") as file:
-    print("Names written to file - Overrode old names\n")
     print(file.read()) # Prints out the file

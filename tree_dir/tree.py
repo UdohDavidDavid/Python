@@ -1,10 +1,11 @@
 # Also david, if theres something you want to implement like this tree stuff,
 # Just search up a library for it
 
-from treelib import Tree # import Treelib
+from treelib import Tree, exceptions # import Treelib
 import argparse
 import os
 import sys
+import random
 
 # Creates a new tree
 tree = Tree()
@@ -27,7 +28,7 @@ tree.create_node("tree.exe", "tree", parent="down")
 tree.create_node("Washing Mashine Heart", "washing", parent="music")
 
 # Show the tree
-tree.show()
+#tree.show()
 
 parser = argparse.ArgumentParser(
                     prog='Folder Tree',
@@ -37,7 +38,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument('-f', '--folder')
 args = parser.parse_args()
 
-current_args = sys.argv
+
 
 def printhomedir():
     cwd = os.getcwd()
@@ -67,16 +68,25 @@ def printdir():
         fullpath = os.path.join(cwd, file)
         if os.path.isdir(fullpath):
             if not tree.contains(file):
-                tree.create_node(file, file, parent=cwd)
+                randomfile = file + str(random.randint(1, 100))
+                tree.create_node(file, randomfile, parent=cwd)
                 for folder in os.listdir(fullpath):
                     if not tree.contains(folder):
-                        tree.create_node(folder, folder, parent=file)
+                        random_folder = folder + str(random.randint(1, 100))
+                        tree.create_node(folder, random_folder, parent=randomfile)
         elif os.path.isfile(fullpath):
             tree.create_node(file, file, parent=cwd)
     tree.show()
 
+
 if args.folder == None:
-    printhomedir()
+    try:
+        printhomedir()
+    except exceptions.DuplicatedNodeIdError:
+        print("Bluh")
 
 elif args.folder != None:
-    printdir()
+    try:
+        printdir()
+    except exceptions.DuplicatedNodeIdError:
+        print("Bluh")

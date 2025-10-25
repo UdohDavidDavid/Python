@@ -1,0 +1,19 @@
+
+import os # os.path for files and stuff
+
+path = os.path.join(os.path.expanduser("~")) # Get home dir
+print(path) # Print home dir
+
+
+# recursivly print dirs - Generator
+def get_all_dir(root):
+    # Checks all the files and folders in dir
+    for item in os.listdir(root):
+        # return items without stopping generator
+        yield item
+        # get the full path to the item
+        fullpath = os.path.join(root, item)
+        if os.path.isdir(fullpath): # checks if its a dir
+            yield from get_all_dir(fullpath) # does the same operation
+
+get_all_dir(path)   # print all the files

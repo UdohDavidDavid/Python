@@ -29,7 +29,7 @@ def build_tree(path):
             filename = os.path.join(root, f)
             tree.create_node(f, filename, parent=root)   # Files will automatically connect to dir, because their root is also the directories name. Do you see the trick there, i hope you do
     # Returns the tree
-
+    return tree
 
 if args.f__folder:
     folder = os.path.join(args.f__folder)

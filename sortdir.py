@@ -21,7 +21,7 @@ parser = argparse.ArgumentParser(
     epilog = "Use --help to show help message",
 ) # The parser provides help information
 
-             
+
 # All types of files and the folder they will be moved to
 file_types = {
     "Fonts"      : [".ttf",],
@@ -67,3 +67,4 @@ for folder, file_type in file_types.items(): # The file type and folder in key, 
 #
 #for file in ttf_dir:
 #    shutil.move(file, new_dir_path)
+

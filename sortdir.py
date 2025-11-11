@@ -2,7 +2,7 @@
 # This script only works for the Downloads folder because
 # it is usually the most unorganised.
 
-# Use only in this folder so that project files and 
+# Use only in this folder so that project files and
 # other files wont be accedentally moved around
 
 # Author: David
@@ -20,6 +20,7 @@ parser = argparse.ArgumentParser(
     description = "Sorts files based on type - E.g, Music, Videos, Compressed, Fonts. Just go to folder you wish to sort and run the program",
     epilog = "Use --help to show help message",
 ) # The parser provides help information
+
 
 
 # All types of files and the folder they will be moved to

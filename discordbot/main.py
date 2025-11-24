@@ -22,7 +22,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 secret_role = "Gamer"
 
 # List of bad words
-bad_words = ["shit"]
+bad_words = ["shit", "fuck", "nigga", "beat it"]
 # Check if bot is active
 @bot.event
 async def on_ready():

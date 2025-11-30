@@ -3,11 +3,9 @@ import string
 import random
 import sys
 import os
-from rich import print
-from rich.panel import Panel
 
 def ask_for_games():
-    print("[bold blue]>> Enter the game to review <single worded> : [/bold blue]", end="")
+    print(">> Enter the game to review <single worded> : ", end="")
     game = input("")
     return game
 
@@ -20,15 +18,15 @@ def ask_review_time(game, time, RUNNING_TIME):
 
 def print_values(GAMES, TOTAL_SEC, s_time):
     #print("-------------------------------------------------")
-    print(f"\n  [bold magenta]Total time: [/bold magenta]{t.strftime("%H:%M:%S", t.gmtime(TOTAL_SEC))}")
+    print(f"\n  Total time: {t.strftime("%H:%M:%S", t.gmtime(TOTAL_SEC))}")
     for key, value in GAMES.items():
-        print(f"      [dark magenta]>{key} [/dark magenta]: {t.strftime("%H:%M:%S", t.gmtime(value))}")
+        print(f"      >{key} : {t.strftime("%H:%M:%S", t.gmtime(value))}")
     r_time = TOTAL_SEC - s_time
-    print(f"  {t.strftime("%H:%M:%S", t.gmtime(r_time))} ({r_time} seconds) [bold magenta]available[/bold magenta]\n")
+    print(f"  {t.strftime("%H:%M:%S", t.gmtime(r_time))} ({r_time} seconds) available\n")
     #print("-------------------------------------------------")
 
 def confirm_input(game, time):
-    print(f"[yellow]>> Confirm entry? (Y/n) <{game} : {t.strftime("%H:%M:%S", t.gmtime(int(time)))}> ({int(time)} seconds): [/yellow]", end = "")
+    print(f">> Confirm entry? (Y/n) <{game} : {t.strftime("%H:%M:%S", t.gmtime(int(time)))}> ({int(time)} seconds): ", end = "")
     choice = input("")
     while 1:
         if choice.lower() == 'y':
@@ -36,11 +34,11 @@ def confirm_input(game, time):
         elif choice.lower() == 'n':
             return 0
         else:
-            print("[yellow]Follow prompt (Y/n) [/yellow]", end = "")
+            print("Follow prompt (Y/n) ", end = "")
             choice = input("")
 
 def confirm_exit():
-    print("[red]Start stream? (Y/n)[/red]", end = "")
+    print("Start stream? (Y/n)", end = "")
     start_choice = input("")
     while 1:
         if start_choice.lower() == 'y':
@@ -48,7 +46,7 @@ def confirm_exit():
         elif start_choice.lower() == 'n':
             return 0
         else:
-            print("[yellow]Follow prompt (Y/n) [/yellow]", end = "")
+            print("Follow prompt (Y/n) ", end = "")
             start_choice = input("")
 
 def get_run_time(RUNNING_TIME):
@@ -92,7 +90,7 @@ def print_all_games(GAMES):
         print(f"{key} <{t.strftime("%H:%M:%S", t.gmtime(value))}>  ", end = " ")
 
 def start_stream(TOTAL_SEC, GAMES):
-    print("[red]\nStream Starting!!![/red]")
+    print("\nStream Starting!!!")
     print_all_games(GAMES)
     random_time = release_discount_code(TOTAL_SEC);
     i = 0
@@ -112,7 +110,7 @@ def start_stream(TOTAL_SEC, GAMES):
                 current = list(GAMES)[j]
                 current_timer = RUNNING_TIME[current]
             except IndexError:
-                print("[green]No more games to review![/green]", end = "\r")
+                print("No more games to review!", end = "\r")
         if random_time > 0:
             random_time-=1
         elif random_time == 0:
@@ -124,15 +122,16 @@ def start_stream(TOTAL_SEC, GAMES):
 
 if __name__ == "__main__":
 
-    print(Panel("Manage you Stream tasks gracfully!!", title="🔥 CLI StreamSchedular 🔥", subtitle="v1.0"))
+    #print(Panel("Manage you Stream tasks gracfully!!", title="🔥 CLI StreamSchedular 🔥", subtitle="v1.0"))
+    print_panel_type_shii()
 
-    print("[bold cyan][bold cyan]>[/bold cyan][green]>[/green][yellow]>[/yellow][red]>[/red]Process! [/bold cyan][green]Success![/green] [yellow]Warning![/yellow] [red]Error![/red]")
+    print(">>>>Process! Success!Warning! Error!")
 
     #os.system("clear")
     terms = True
     try:
         while 1:
-            print("[bold blue]\n>> Stream durration <in minutes> : [/bold blue]", end = "")
+            print("\n>> Stream durration <in minutes> : ", end = "")
             TOTAL_MINUTES = input("")
             if TOTAL_MINUTES.isdigit():
                 TOTAL_MINUTES = int(TOTAL_MINUTES)
@@ -148,7 +147,7 @@ if __name__ == "__main__":
                                 start_stream(TOTAL_SEC, GAMES)
                             continue
                         else:
-                            print("[bold cyan]>> Enter the time to spend reviewing <in seconds> (Try not to overflow the stream duration): [/bold cyan]", end = "")
+                            print(">> Enter the time to spend reviewing <in seconds> (Try not to overflow the stream duration): ", end = "")
                             time = input("")
                             time_check = ask_review_time(game, time, RUNNING_TIME)
                             if time_check:
@@ -162,11 +161,11 @@ if __name__ == "__main__":
                                         print_values(GAMES, TOTAL_SEC, s_time)
                                         #print(s_time)
                                 else:
-                                    print("[red]You just went overtime. Trying reducing the amount of time\n[/red]")
+                                    print("You just went overtime. Trying reducing the amount of time\n")
                                     RUNNING_TIME.pop()
                                     continue
                 input("Start stream?")
             else:
-                print("[red]Please just enter the damn time in minutes[/red]")
+                print("Please just enter the damn time in minutes")
     except KeyboardInterrupt:
         print("\nStream Stopped")

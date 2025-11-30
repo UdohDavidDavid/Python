@@ -124,7 +124,7 @@ def start_stream(TOTAL_SEC, GAMES):
 
 if __name__ == "__main__":
 
-    #print(Panel("Manage you Stream tasks gracfully!!", title="🔥 CLI StreamSchedular 🔥", subtitle="v1.0"))
+    print(Panel("Manage you Stream tasks gracfully!!", title="🔥 CLI StreamSchedular 🔥", subtitle="v1.0"))
 
     print("[bold cyan][bold cyan]>[/bold cyan][green]>[/green][yellow]>[/yellow][red]>[/red]Process! [/bold cyan][green]Success![/green] [yellow]Warning![/yellow] [red]Error![/red]")
 

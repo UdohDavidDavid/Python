@@ -7,7 +7,7 @@
 #   UUID             - Accepts UUID strings (Search that up)
 #   Float            - Theres also floats apparently
 
-from flask import Flask, redirect, url_for
+from flask import Flask, redirect, url_for, render_template
 app = Flask(__name__) # Flask constructor -- Creates a flask app
 
 # A decorator used to tell the application
@@ -19,7 +19,7 @@ def hello_flask(name):  # Creates a function that is bound with "/" route and re
 
 @app.route("/") # Defines another route
 def home_flask(): # Function is bound to route
-    return "Welcome to Home Page!" # Displays Message when the url is visited
+    return render_template("index.html")
 
 @app.route("/<float:flaskID>") # This is the variable type Int. Accepts floats and signed ints too
 def flask_id(flaskID):

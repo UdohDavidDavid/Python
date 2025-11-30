@@ -28,5 +28,5 @@ def print_better_traingles(size):
         print()
 
 
-print_triangles(69)
+print_triangles(67)
 #print_better_traingles(69)

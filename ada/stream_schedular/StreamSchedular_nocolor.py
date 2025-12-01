@@ -98,6 +98,7 @@ def start_stream(TOTAL_SEC, GAMES):
     current = list(GAMES)[i]
     current_timer = RUNNING_TIME[current]
     while TOTAL_SEC >= 0:
+        print("\n"*49)
         print_discount_code_countdown(random_time)
         print_total_time(TOTAL_SEC)
         print_current_game_time(current, current_timer, RUNNING_TIME)
@@ -123,6 +124,7 @@ def start_stream(TOTAL_SEC, GAMES):
 if __name__ == "__main__":
 
     #print(Panel("Manage you Stream tasks gracfully!!", title="🔥 CLI StreamSchedular 🔥", subtitle="v1.0"))
+    #
     print_panel_type_shii()
 
     print(">>>>Process! Success!Warning! Error!")

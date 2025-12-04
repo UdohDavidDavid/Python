@@ -3,9 +3,37 @@ import string
 import random
 import sys
 import os
+from rich import print as printc
+from rich.panel import Panel
+
+
+
+#def print_panel_type_shii():
+#    panel = r"""
+#+==============================================================+
+#||  Manage your stream tasks gracefully!!                     ||
+#||    :: v1.0                                                 ||
+#+==============================================================+
+#"""
+#    print(panel)
+#
+
+
+def print_panel_type_shii():
+    panel_type_shii = r"""
++--------------------------------------------------------------+
+|  Manage your streams tasks gracfully!!                       |
+|   :: 1.0v                                                    |
++--------------------------------------------------------------+
+"""
+    print(panel_type_shii, end = "\n")
+
+
+
+
 
 def ask_for_games():
-    print(">> Enter the game to review <single worded> : ", end="")
+    print("==> Enter the game to review <single worded> : ", end="")
     game = input("")
     return game
 
@@ -17,17 +45,22 @@ def ask_review_time(game, time, RUNNING_TIME):
     return False
 
 def print_values(GAMES, TOTAL_SEC, s_time):
-    #print("-------------------------------------------------")
-    print(f"\n  Total time: {t.strftime("%H:%M:%S", t.gmtime(TOTAL_SEC))}")
+    os.system("clear")
+    print_panel_type_shii()
+    print("+--------------------------------------------------------------+")
+    print(f":: Total time: {t.strftime("%H:%M:%S", t.gmtime(TOTAL_SEC))}")
+
     for key, value in GAMES.items():
         print(f"      >{key} : {t.strftime("%H:%M:%S", t.gmtime(value))}")
+
     r_time = TOTAL_SEC - s_time
-    print(f"  {t.strftime("%H:%M:%S", t.gmtime(r_time))} ({r_time} seconds) available\n")
-    #print("-------------------------------------------------")
+    print(f":: {t.strftime("%H:%M:%S", t.gmtime(r_time))} ({r_time} seconds) available")
+    print("+--------------------------------------------------------------+\n")
 
 def confirm_input(game, time):
-    print(f">> Confirm entry? (Y/n) <{game} : {t.strftime("%H:%M:%S", t.gmtime(int(time)))}> ({int(time)} seconds): ", end = "")
+    print(f"Confirm entry? (Y/n) <{game} : {t.strftime("%H:%M:%S", t.gmtime(int(time)))}> ({int(time)} seconds): ", end = "")
     choice = input("")
+
     while 1:
         if choice.lower() == 'y':
             return 1
@@ -40,6 +73,7 @@ def confirm_input(game, time):
 def confirm_exit():
     print("Start stream? (Y/n)", end = "")
     start_choice = input("")
+
     while 1:
         if start_choice.lower() == 'y':
             return 1
@@ -51,22 +85,27 @@ def confirm_exit():
 
 def get_run_time(RUNNING_TIME):
     run_time = []
+
     for key, value in RUNNING_TIME.items():
         run_time.append(value)
     return run_time
 
 def print_total_time(TOTAL_SEC):
-    print(f"\t\t\t\tStream ongoing: {t.strftime("%H:%M:%S", t.gmtime(TOTAL_SEC))}", end = "\r")
+    print(f":: Stream ongoing: {t.strftime("%H:%M:%S", t.gmtime(TOTAL_SEC))}")
     sys.stdout.flush()
 
 def print_current_game_time(current, current_timer, RUNNING_TIME):
+    print("\n==> ", end = "")
     len_limit = 12
+
     if len(current) > len_limit:
         for i in range(len_limit):
             print(current[i], end = "")
-        print(f"...: {t.strftime("%H:%M:%S", t.gmtime(current_timer))}", end = "\r")
+        print(f"...: {t.strftime("%H:%M:%S", t.gmtime(current_timer))}", end = "")
     else:
-        print(f"{current}: {t.strftime("%H:%M:%S", t.gmtime(current_timer))}", end = "\r")
+        print(f"{current}: {t.strftime("%H:%M:%S", t.gmtime(current_timer))}", end = "")
+    print("\t:: Currently reviewing this game!")
+
     sys.stdout.flush()
 
 def release_discount_code(TOTAL_SEC):
@@ -74,35 +113,83 @@ def release_discount_code(TOTAL_SEC):
     return random_time
 
 def print_discount_code_countdown(random_time):
-    if random_time == -1:
-        print(f"\t\t\t\t\t\t\t\t\t<Discount given!>                                                             ", end = "\r")
+    if random_time <= 0:
+        print(f":: <Discount given!>")
     else:
-        print(f"\t\t\t\t\t\t\t\t    Discount code in <{t.strftime("%H:%M:%S", t.gmtime(random_time))}>", end = "\r")
+        print(f":: Discount code in: <{t.strftime("%H:%M:%S", t.gmtime(random_time))}>")
 
-def print_discount_code(random_time):
-    chars = string.ascii_letters + string.digits + string.punctuation
-    result = ''.join(random.choice(chars) for _ in range(8))
-    print(f"\t\t\t\t\t\t\t\t   Discount code <{result}")
+def get_discount_code():
+    #chars = string.ascii_letters + string.digits + string.punctuation
+    chars = string.digits    # I dicided only digits would be okay
+    result = ''.join(random.choice(chars) for _ in range(6))
+    return result
+
+def print_discount_code(discount):
+    print(f"==> Discount code: {discount}")
 
 def print_all_games(GAMES):
-    print(">> ", end = "")
+    #print("==> ", end = "")
+    len_limit = 12
+
     for key, value in GAMES.items():
-        print(f"{key} <{t.strftime("%H:%M:%S", t.gmtime(value))}>  ", end = " ")
+        if len(key) > len_limit:
+            print("::", end = " ")
+            for i in range(len_limit):
+                print(key[i], end = "")
+            print(f"...: {t.strftime("%H:%M:%S", t.gmtime(value))}  ", end = " ")
+        else:
+            print("::", end = " ")
+            print(f"{key}: {t.strftime("%H:%M:%S", t.gmtime(value))}  ", end = " ")
+
+    print("\n\n", end = "")
+
+
+def print_stream_type_shii():
+    stream_type_shii = r"""
++--------------------------------------------------------------+
+|  Manage your streams tasks gracfully!!                       |
+|     :: Stream Ongoing...                                     |
++--------------------------------------------------------------+
+"""
+    print(stream_type_shii, end = "")
+
+
+#def print_stream_type_shii():
+#    switch = r"""
+#/==============================================================\
+#||  Manage your stream tasks gracefully!!                     ||
+#||    :: v1.0                                                 ||
+#\==============================================================/
+#"""
+#    print(switch)
+
+
 
 def start_stream(TOTAL_SEC, GAMES):
-    print("\nStream Starting!!!")
-    print_all_games(GAMES)
+    #os.system("clear")
+    #print("\033[H\033[J")
+
+
     random_time = release_discount_code(TOTAL_SEC);
     i = 0
     j = i
     current = list(GAMES)[i]
     current_timer = RUNNING_TIME[current]
+
+    discount = get_discount_code()
+
     while TOTAL_SEC >= 0:
-        print("\n"*49)
-        print_discount_code_countdown(random_time)
+        os.system("clear")
+        print_stream_type_shii()
+        print()
+        print_all_games(GAMES)
+
         print_total_time(TOTAL_SEC)
+        print_discount_code_countdown(random_time)
         print_current_game_time(current, current_timer, RUNNING_TIME)
+
         TOTAL_SEC-=1
+
         if current_timer > 0:
             current_timer-=1
         else:
@@ -111,29 +198,47 @@ def start_stream(TOTAL_SEC, GAMES):
                 current = list(GAMES)[j]
                 current_timer = RUNNING_TIME[current]
             except IndexError:
-                print("No more games to review!", end = "\r")
+                #print("\033[1B", end = "")
+                print("\n:: No more games to review!")
+                #print("\033[2A", end = "")
+
         if random_time > 0:
             random_time-=1
-        elif random_time == 0:
-            print_discount_code(random_time)
-            random_time-=1
+        elif random_time <= 0:
+            print_discount_code(discount)
+
+        #print("\033[4A", end = "")
         t.sleep(1)
+
     input("\nPress enter to leave...")
     quit()
 
-if __name__ == "__main__":
 
-    #print(Panel("Manage you Stream tasks gracfully!!", title="🔥 CLI StreamSchedular 🔥", subtitle="v1.0"))
+
+#def print_panel_type_shii():
+#    panel_type_shii = r"""
+#+--------------------------------------------------------------+
+#|  Manage your streams tasks gracfully!!                       |
+#|   :: 1.0v                                                    |
+#+--------------------------------------------------------------+
+#"""
+#    print(panel_type_shii, end = "\n")
+
+
+if __name__ == "__main__":
+    os.system("clear")
+    #print("\033[H\033[J")
+
+    #printc(Panel("Manage you Stream tasks gracfully!!", title="🔥 CLI StreamSchedular 🔥", subtitle="v1.0"))
     #
     print_panel_type_shii()
 
-    print(">>>>Process! Success!Warning! Error!")
+    #print("\n:: Process! Success! Warning! Error!")
 
-    #os.system("clear")
     terms = True
     try:
         while 1:
-            print("\n>> Stream durration <in minutes> : ", end = "")
+            print("==> Stream durration <in minutes> : ", end = "")
             TOTAL_MINUTES = input("")
             if TOTAL_MINUTES.isdigit():
                 TOTAL_MINUTES = int(TOTAL_MINUTES)
@@ -149,7 +254,7 @@ if __name__ == "__main__":
                                 start_stream(TOTAL_SEC, GAMES)
                             continue
                         else:
-                            print(">> Enter the time to spend reviewing <in seconds> (Try not to overflow the stream duration): ", end = "")
+                            print("==> Enter the time to spend reviewing <in seconds> : ", end = "")
                             time = input("")
                             time_check = ask_review_time(game, time, RUNNING_TIME)
                             if time_check:
@@ -164,7 +269,7 @@ if __name__ == "__main__":
                                         #print(s_time)
                                 else:
                                     print("You just went overtime. Trying reducing the amount of time\n")
-                                    RUNNING_TIME.pop()
+                                    RUNNING_TIME.pop(game)
                                     continue
                 input("Start stream?")
             else:
